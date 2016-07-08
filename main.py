@@ -39,8 +39,7 @@ def main(k):
                     max_palindrome = z
                     mx = x
                     my = y
-
-    return (max_palindrome, mx, my)
+                    return (max_palindrome, mx, my)
 
 
 if __name__ == '__main__':
