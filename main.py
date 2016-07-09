@@ -7,23 +7,9 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 
 import cProfile
 import time
-import itertools
+from itertools import permutations
+
 import string
-
-
-def reverse(strorint):
-    return int(str(strorint)[::-1])
-
-
-def palindrome_range(start,stop,step=1):
-    for x in range(start,stop,step):
-        if str(x)==str(x)[::-1]:
-            yield x
-
-
-def is_palindrome(x):
-    if str(x) == str(x)[::-1]:
-        return True
 
 
 def main(k):
@@ -31,15 +17,22 @@ def main(k):
     max_palindrome = 0
     mx = 0
     my = 0
-    for x in range(999, 100, -1):
-        for y in range(999, 100, -1):
+    start = 999
+    llim =  100
+    for x in range(start, llim, -1):
+        for y in range(start, llim, -1):
             z = x * y
-            if str(z) == str(z)[::-1]:
+            if z <= max_palindrome:
+                break
+            elif str(z) == str(z)[::-1]:
                 if z > max_palindrome:
                     max_palindrome = z
                     mx = x
                     my = y
-                    return (max_palindrome, mx, my)
+                    start = x-1
+                    break
+
+    return max_palindrome, mx, my
 
 
 if __name__ == '__main__':
